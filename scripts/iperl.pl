@@ -9,6 +9,7 @@ use threads::shared;
 use Thread::Queue;
 use PadWalker 'peek_my';
 use Package::Stash;
+use AnyEvent;
 use Capture::Tiny ':all';
 
 $|++;
@@ -35,7 +36,6 @@ threads->create(
             }
 
             print '> ';
-            sleep 1;
         }
     },
     $command_queue,
@@ -50,10 +50,10 @@ sub evaluator {
 
     my $stash = Package::Stash->new('main');
 
-    while (1) {
+    my $loop = AE::timer 0, 1/20, sub {
         state ($context);
 
-        if (my $command = $command_queue->dequeue) {
+        if (my $command = $command_queue->pending && $command_queue->dequeue) {
             my $output = capture_merged{
                 eval $command . '; $context = peek_my(0)';
                 print $@;
@@ -61,9 +61,8 @@ sub evaluator {
             map { $stash->add_symbol($_, $context->{$_}) } keys $context;
             $output_queue->enqueue($output || '');
         }
-
-        sleep 1;
-    }
+    };
+    AE::cv->recv;
 
     return;
 }
