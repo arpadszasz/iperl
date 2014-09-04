@@ -50,6 +50,9 @@ sub init_gui {
         wxDefaultSize,
         wxTE_MULTILINE,
     );
+    $textctrl_code->SetFont(
+        Wx::Font->new( 10, wxFONTFAMILY_TELETYPE, 90, 90, 0, "" )
+    );
 
     my $textctrl_output = Wx::TextCtrl->new(
         $panel,
@@ -64,7 +67,7 @@ sub init_gui {
     );
     $textctrl_output->SetForegroundColour( wxWHITE );
     $textctrl_output->SetFont(
-        Wx::Font->new( wxNORMAL_FONT->GetPointSize, 76, 90, 90, 0, "" )
+        Wx::Font->new( 10, wxFONTFAMILY_TELETYPE, 90, 90, 0, "" )
     );
 
     my $button_evaluate = Wx::Button->new(
