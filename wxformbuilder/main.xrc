@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="iPerl">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>800,500</size>
+		<title></title>
+		<centered>1</centered>
+		<aui_managed>0</aui_managed>
+		<object class="wxPanel" name="m_panel1">
+			<style>wxTAB_TRAVERSAL</style>
+			<object class="wxBoxSizer">
+				<orient>wxVERTICAL</orient>
+				<object class="sizeritem">
+					<option>1</option>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+					<object class="wxTextCtrl" name="main_textctrl_code">
+						<style>wxTE_MULTILINE</style>
+						<value></value>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxEXPAND</flag>
+					<border>5</border>
+					<object class="wxBoxSizer">
+						<orient>wxHORIZONTAL</orient>
+						<object class="spacer">
+							<option>1</option>
+							<flag>wxEXPAND</flag>
+							<border>5</border>
+							<size>0,0</size>
+						</object>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALL</flag>
+							<border>5</border>
+							<object class="wxButton" name="main_button_evaluate">
+								<label>Evaluate</label>
+								<default>0</default>
+							</object>
+						</object>
+						<object class="spacer">
+							<option>1</option>
+							<flag>wxEXPAND</flag>
+							<border>5</border>
+							<size>0,0</size>
+						</object>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+					<object class="wxTextCtrl" name="main_textctrl_output">
+						<style>wxTE_MULTILINE|wxTE_READONLY</style>
+						<size>-1,120</size>
+						<bg>#4c4c4c</bg>
+						<font>
+							<family>teletype</family>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+						</font>
+						<value></value>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+</resource>
