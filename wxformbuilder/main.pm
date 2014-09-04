@@ -78,7 +78,7 @@ sub new {
 	$self->{m_panel1}->Layout;
 
 	my $bSizer1 = Wx::BoxSizer->new(wxVERTICAL);
-	$bSizer1->Add( $self->{m_panel1}, 1, wxEXPAND | wxALL, 5 );
+	$bSizer1->Add( $self->{m_panel1}, 1, wxEXPAND | wxALL, 0 );
 
 	$self->SetSizer($bSizer1);
 	$self->Layout;

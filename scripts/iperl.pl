@@ -124,7 +124,7 @@ sub init_gui {
     $panel->Layout;
 
     my $bSizer1 = Wx::BoxSizer->new(wxVERTICAL);
-    $bSizer1->Add( $panel, 1, wxEXPAND | wxALL, 5 );
+    $bSizer1->Add( $panel, 1, wxEXPAND | wxALL, 0 );
 
     $frame->SetSizer($bSizer1);
     $frame->Layout;
