@@ -1,0 +1,38 @@
+#!C:\Program Files\ActiveState Perl Dev Kit 9.3\bin\perlapp-gui.exe
+PAP-Version: 1.0
+Packer: C:\Program Files\ActiveState Perl Dev Kit 9.3\bin\perlapp.exe
+Script: G:\plenum\iperl\scripts\iperl.pl
+Cwd: G:\plenum\iperl
+Add: AnyEvent::
+Add: POE::
+Byref: 0
+Clean: 0
+Date: 2014-09-05 00:46:45
+Debug: 
+Dependent: 0
+Dyndll: 0
+Exe: perlapp\iperl.exe
+Force: 1
+Gui: 1
+Hostname: PLANCTON-WIN7
+Manifest: 
+No-Compress: 0
+No-Gui: 0
+No-Logo: 0
+Runlib: 
+Shared: none
+Singleton: 0
+Tmpdir: 
+Verbose: 1
+Version-Comments: https://github.com/arpadszasz/iperl
+Version-CompanyName: 
+Version-FileDescription: 
+Version-FileVersion: 
+Version-InternalName: 
+Version-LegalCopyright: 
+Version-LegalTrademarks: 
+Version-OriginalFilename: 
+Version-ProductName: iPerl
+Version-ProductVersion: 0.1
+Warnings: 1
+Xclude: 0

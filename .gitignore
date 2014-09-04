@@ -1,3 +1,5 @@
 tmp/*
 !.gitignore
 !.keep
+perlapp/*.exe
+perlapp/*.bin
