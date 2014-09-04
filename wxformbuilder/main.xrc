@@ -17,6 +17,7 @@
 					<object class="wxTextCtrl" name="main_textctrl_code">
 						<style>wxTE_MULTILINE</style>
 						<value></value>
+						<maxlength>-1</maxlength>
 					</object>
 				</object>
 				<object class="sizeritem">
@@ -63,6 +64,7 @@
 							<underlined>0</underlined>
 						</font>
 						<value></value>
+						<maxlength>-1</maxlength>
 					</object>
 				</object>
 			</object>
