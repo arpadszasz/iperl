@@ -14,42 +14,12 @@ use Capture::Tiny ':all';
 
 $|++;
 
-my $command_queue = Thread::Queue->new;
-my $output_queue  = Thread::Queue->new;
-my $worker        = threads->create(
-    'evaluator',
-    $command_queue,
-    $output_queue,
-)->detach;
+package iPerl::Wx;
 
-init_gui();
-
-exit 0;
-
-sub evaluator {
+sub init_gui {
     my $command_queue = shift;
     my $output_queue  = shift;
 
-    my $stash = Package::Stash->new('main');
-
-    my $loop = AE::timer 0, 1/20, sub {
-        state ($context);
-
-        if (my $command = $command_queue->pending && $command_queue->dequeue) {
-            my $output = capture_merged{
-                eval $command . '; $context = peek_my(0)';
-                print $@;
-            };
-            map { $stash->add_symbol($_, $context->{$_}) } keys $context;
-            $output_queue->enqueue($output || '');
-        }
-    };
-    AE::cv->recv;
-
-    return;
-}
-
-sub init_gui {
     use Wx ':everything';
     use Wx::Event ':everything';
 
@@ -141,4 +111,46 @@ sub init_gui {
     $frame->Show;
 
     $app->MainLoop;
+
+    return;
 }
+
+package main;
+
+{
+    my $command_queue = Thread::Queue->new;
+    my $output_queue  = Thread::Queue->new;
+    my $worker        = threads->create(
+        'evaluator',
+        $command_queue,
+        $output_queue,
+    )->detach;
+
+    iPerl::Wx::init_gui($command_queue, $output_queue);
+}
+
+exit 0;
+
+sub evaluator {
+    my $command_queue = shift;
+    my $output_queue  = shift;
+
+    my $stash = Package::Stash->new('main');
+
+    my $loop = AE::timer 0, 1/20, sub {
+        state ($context);
+
+        if (my $command = $command_queue->pending && $command_queue->dequeue) {
+            my $output = capture_merged{
+                eval $command . '; $context = peek_my(0)';
+                print $@;
+            };
+            map { $stash->add_symbol($_, $context->{$_}) } keys $context;
+            $output_queue->enqueue($output || '');
+        }
+    };
+    AE::cv->recv;
+
+    return;
+}
+
