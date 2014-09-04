@@ -1,0 +1,9 @@
+requires 'Alien::wxWidgets', '0.63';
+requires 'AnyEvent', '7.07';
+requires 'Capture::Tiny', '0.24';
+requires 'Package::Stash', '0.36';
+requires 'PadWalker', '1.98';
+requires 'POE', '1.364';
+requires 'Thread::Queue', '3.02';
+requires 'threads', '1.89';
+requires 'Wx', '0.9921';

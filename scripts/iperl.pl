@@ -5,7 +5,6 @@ use strict;
 use warnings;
 use utf8;
 use threads;
-use threads::shared;
 use Thread::Queue;
 use PadWalker 'peek_my';
 use Package::Stash;
