@@ -141,7 +141,10 @@ sub button_evaluate_action {
     my $textctrl_code   = shift;
     my $textctrl_output = shift;
 
-    my $command = $textctrl_code->GetValue;
+    my $command
+      = $textctrl_code->GetStringSelection
+      ? $textctrl_code->GetStringSelection
+      : $textctrl_code->GetValue;
     return if $command =~ /^\s*$/;
 
     $command_queue->enqueue($command);
