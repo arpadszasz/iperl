@@ -73,7 +73,7 @@ sub init_gui {
     my $button_evaluate = Wx::Button->new(
         $panel,
         -1,
-        "Evaluate",
+        "Evaluate (F5)",
         wxDefaultPosition,
         wxDefaultSize,
     );
@@ -81,15 +81,32 @@ sub init_gui {
         $button_evaluate,
         -1,
         sub {
-            my $command = $textctrl_code->GetValue;
-            return if $command =~ /^\s*$/;
+            return iPerl::Wx::button_evaluate_action(
+                $command_queue,
+                $output_queue,
+                $textctrl_code,
+                $textctrl_output,
+            );
+        }
+    );
 
-            $command_queue->enqueue($command);
+    EVT_CHAR(
+        $textctrl_code,
+        sub {
+            my $self    = shift;
+            my $key_evt = shift;
 
-            if (my $output = $output_queue->dequeue) {
-                $textctrl_output->AppendText($output . "\n");
+            if ($key_evt->GetKeyCode == Wx::WXK_F5) {
+                return iPerl::Wx::button_evaluate_action(
+                    $command_queue,
+                    $output_queue,
+                    $textctrl_code,
+                    $textctrl_output,
+                );
             }
-            return;
+            else {
+                $key_evt->Skip;
+            }
         }
     );
 
@@ -114,6 +131,24 @@ sub init_gui {
     $frame->Show;
 
     $app->MainLoop;
+
+    return;
+}
+
+sub button_evaluate_action {
+    my $command_queue   = shift;
+    my $output_queue    = shift;
+    my $textctrl_code   = shift;
+    my $textctrl_output = shift;
+
+    my $command = $textctrl_code->GetValue;
+    return if $command =~ /^\s*$/;
+
+    $command_queue->enqueue($command);
+
+    if (my $output = $output_queue->dequeue) {
+        $textctrl_output->AppendText($output . "\n");
+    }
 
     return;
 }
