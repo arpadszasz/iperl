@@ -58,6 +58,7 @@ sub evaluator {
                 eval $command . '; $context = peek_my(0)';
                 print $@;
             };
+            map { $stash->add_symbol($_, $context->{$_}) } keys $context;
             $output_queue->enqueue($output || '');
         }
 
