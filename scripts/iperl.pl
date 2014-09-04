@@ -23,12 +23,18 @@ my $worker        = threads->create(
 
 threads->create(
     sub {
+        print '> ';
         while (<>) {
+            next if /^\s*$/;
+
             $_[0]->enqueue($_);
+
             if (my $output = $_[1]->dequeue) {
                 chomp $output;
-                print $output, "\n";
+                print '= ' . $output . "\n";
             }
+
+            print '> ';
             sleep 1;
         }
     },
@@ -52,11 +58,11 @@ sub evaluator {
                 eval $command . '; $context = peek_my(0)';
                 print $@;
             };
-            $output_queue->enqueue($output) if $output;
+            $output_queue->enqueue($output || '');
         }
 
         sleep 1;
     }
 
     return;
-} 
+}
