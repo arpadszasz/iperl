@@ -3,3 +3,5 @@ tmp/*
 !.keep
 perlapp/*.exe
 perlapp/*.bin
+perlapp/*.zip
+perlapp/*.tar.gz

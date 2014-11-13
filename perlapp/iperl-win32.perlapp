@@ -13,7 +13,7 @@ Dependent: 0
 Dyndll: 0
 Exe: perlapp\iperl.exe
 Force: 1
-Gui: 1
+Gui: 0
 Hostname: PLANCTON-WIN7
 Manifest: 
 No-Compress: 0
