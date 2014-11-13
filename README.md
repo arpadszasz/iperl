@@ -6,6 +6,8 @@ iPerl is an attempt to make a beginner friendly GUI REPL with standard REPL feat
 
 Inspiration for live-coding and code stolen from [vividsnow on blogs.perl.org](http://blogs.perl.org/users/egor/2013/05/perl-live-coding.html)
 
+[![Perl live coding on YouTube](images/perl-live-coding-youtube.jpg)](http://www.youtube.com/watch?v=BCUtu4urY9w)
+
 ## Installing
 
 ### From source
@@ -19,6 +21,8 @@ cpanm --installdeps .
 
 1. download [iPerl binary archive for Windows](https://github.com/arpadszasz/iperl/releases/download/0.1/iperl-windows-0.1.zip)
 2. extract and run `iperl.exe`
+
+![iPerl on Windows](images/iperl-windows.jpg "iPerl on Windows")
 
 ### Linux
 
